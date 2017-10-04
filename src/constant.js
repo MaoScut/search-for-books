@@ -1,0 +1,6 @@
+export const SET_TOPIC = 'SET_TOPIC';
+export const SET_DISPLAY_MODE = 'SET_DISPLAY_MODE';
+export const FETCH_STARTED = 'FETCH_STARTED';
+export const FETCH_FAILED = 'FETCH_FAILED';
+export const FETCH_COMPLETE = 'FETCH_COMPLETE';
+export const BEGIN_FETCH = 'BEGIN_FETCH';
