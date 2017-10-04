@@ -18,6 +18,9 @@ module.exports = {
     rules: [{
       test: /\.jsx/,
       loaders: ['babel-loader'],
+    }, {
+      test: /\.css/,
+      loader: ['css-loader'],
     }],
   },
   resolve: {
