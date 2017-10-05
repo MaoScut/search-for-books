@@ -1,6 +1,7 @@
 import React from 'react';
 import ControlsContainer from './controls';
 import BooksContainer from './books';
+import StateViewerContainer from './stateViewer';
 
 const titleStyle = {
   fontFamily: 'tahoma',
@@ -19,6 +20,7 @@ const App = () => (
     <hr />
     <ControlsContainer />
     <BooksContainer />
+    <StateViewerContainer />
   </div>
 );
 export default App;

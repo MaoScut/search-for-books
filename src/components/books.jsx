@@ -46,7 +46,7 @@ const Books = ({
           transitionName="books"
           transitionEnterTimeout={1000}
         > */}
-          {bookMarkup()}
+        {bookMarkup()}
         {/* </ReactCssTransitionGroup> */}
       </div>
     </div>

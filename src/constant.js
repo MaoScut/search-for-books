@@ -4,3 +4,6 @@ export const FETCH_STARTED = 'FETCH_STARTED';
 export const FETCH_FAILED = 'FETCH_FAILED';
 export const FETCH_COMPLETE = 'FETCH_COMPLETE';
 export const BEGIN_FETCH = 'BEGIN_FETCH';
+export const REDO = 'REDO';
+export const UNDO = 'UNDO';
+export const GOTO = 'GOTO';
