@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import stateHistory from './stateHistory';
 import * as types from './constant';
 
 const defaults = {
@@ -38,10 +39,28 @@ const statusReducer = (state = defaults.STATUS, action) => {
     default: return 'complete';
   }
 };
+const undo = reducer => (state = stateHistory.present, action) => {
+  switch (action.type) {
+    case types.UNDO:
+      stateHistory.undo();
+      break;
+    case types.REDO:
+      stateHistory.redo();
+      break;
+    case types.GOTO:
+      stateHistory.gotoState(action.stateIndex);
+      break;
+    default: {
+      const newState = reducer(state, action);
+      stateHistory.push(newState);
+    }
+  }
+  return stateHistory.present;
+};
 
-export default combineReducers({
+export default undo(combineReducers({
   topic: topicReducer,
   displayMode: displayModeReducer,
   books: fetchReducer,
   currentStatus: statusReducer,
-});
+}));
