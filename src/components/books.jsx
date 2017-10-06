@@ -1,7 +1,7 @@
 import React from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import Book from './book';
 
-const ReactCssTransitionGroup = require('react-addons-css-transition-group');
 
 const Books = ({
   books,
@@ -42,12 +42,13 @@ const Books = ({
     <div>
       {currentStatus !== 'Fetching...' ? null : <Spinner />}
       <div style={styles.container}>
-        {/* <ReactCssTransitionGroup
-          transitionName="books"
+        <CSSTransitionGroup
+          transitionName="example"
           transitionEnterTimeout={1000}
-        > */}
-        {bookMarkup()}
-        {/* </ReactCssTransitionGroup> */}
+          transitionLeave={false}
+        >
+          {bookMarkup()}
+        </CSSTransitionGroup>
       </div>
     </div>
   );
