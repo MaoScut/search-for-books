@@ -1,7 +1,8 @@
 import React from 'react';
 
 const History = ({
-  past, present, future, undo, redo, gotoState, previousActionNum
+  // past, present, future, undo, redo, gotoState, previousActionNum
+  statesLength, canRedo, canUndo, undo, redo, gotoState, currentIndex,
 }) => {
   const styles = {
     container: {
@@ -26,22 +27,23 @@ const History = ({
       &#8592;
     </a>
   );
-  const maxRange = () => ((past ? past.length : 0) +
-    (present ? 1 : 0) +
-    (future ? future.length : 0)) - 1;
+  // const maxRange = () => ((past ? past.length : 0) +
+  //   (present ? 1 : 0) +
+  //   (future ? future.length : 0)) - 1;
+  const maxRange = statesLength - 1;
   return (
     <span>
       History
       <input
         type="range"
-        min={previousActionNum}
-        max={maxRange()}
-        value={past ? past.length : 0}
+        min={0}
+        max={maxRange}
+        value={currentIndex}
         style={styles.input}
         onChange={e => gotoState(e.target.value)}
       />
-      {(past && past.length > previousActionNum) ? <LeftArrow /> : null}
-      {(future && future.length > 0) ? <RightArrow /> : null}
+      {canUndo ? <LeftArrow /> : null}
+      {canRedo ? <RightArrow /> : null}
     </span>
   );
 };

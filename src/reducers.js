@@ -81,7 +81,7 @@ const historyWrapper = reducer => (state, action) => {
       stateHistory.push(newState);
     }
   }
-  return stateHistory.present;
+  return stateHistory.getCurrentState();
 };
 export default historyWrapper(combineReducers({
   topic: topicReducer,

@@ -62,4 +62,60 @@ class History {
     this.future = allStates.slice(index + 1);
   }
 }
-export default new History(0);
+function TimeMachine() {
+  const states = [];
+  let pointer = -1;
+  function thereIsAPast() {
+    return pointer > 0;
+  }
+  function thereIsAFuture() {
+    return pointer < states.length - 1;
+  }
+  function push(state) {
+    debugger;
+    pointer += 1;
+    // 如果想保留0到某索引上的元素，后面的都删除（但是索引位置的元素仍保留）
+    // length表示数组中保留多少个元素，那么0到某索引有多少个元素呢？当然是索引+1咯
+    states.length = pointer + 1;
+    states[pointer] = state;
+  }
+  function undo() {
+    if (thereIsAPast()) {
+      pointer -= 1;
+    }
+  }
+  function redo() {
+    if (thereIsAFuture()) {
+      pointer += 1;
+    }
+  }
+  function getCurrentState() {
+    return states[pointer];
+  }
+  function getCurrentStateIndex() {
+    return pointer;
+  }
+  function getStatesLength() {
+    return states.length;
+  }
+  function gotoState(index) {
+    if (index >= 0 && index <= states.length - 1) {
+      pointer = index;
+    } else {
+      console.error('索引越界！');
+    }
+  }
+  return {
+    push,
+    undo,
+    redo,
+    getCurrentState,
+    gotoState,
+    getStatesLength,
+    thereIsAFuture,
+    thereIsAPast,
+    getCurrentStateIndex,
+  };
+}
+const timeMachine = TimeMachine();
+export default timeMachine;

@@ -5,7 +5,8 @@ const StateViewer = ({
   books,
   currentStatus,
   displayMode,
-  history,
+  actionsProcessed,
+  currentActionIndex,
 }) => {
   const styles = {
     container : {
@@ -34,8 +35,8 @@ const StateViewer = ({
         Topic: {topic} <br />
         displayMode: {displayMode} <br />
         Books displayed: {books.length} <br />
-        Actions processed: {history.past.length + history.future.length} <br />
-        Current action: {history.past.length}
+        Actions processed: {actionsProcessed} <br />
+        Current action: {currentActionIndex}
       </div>
     </div>
   );

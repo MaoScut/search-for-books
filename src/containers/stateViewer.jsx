@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
   topic: state.topic,
   currentStatus: state.currentStatus,
   displayMode: state.displayMode,
-  history: stateHistory,
+  actionsProcessed: stateHistory.getStatesLength(),
+  currentActionIndex: stateHistory.getCurrentStateIndex(),
 });
 
 export default connect(
