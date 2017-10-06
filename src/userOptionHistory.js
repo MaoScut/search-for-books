@@ -1,21 +1,10 @@
+// 如何解决在用户操作之前的action，这部分不能回溯
 class History {
   constructor(actionNumbersBeforeUserAccess) {
     this.actionNumbersBeforeUserAccess = actionNumbersBeforeUserAccess;
     this.past = [];
     this.present = undefined;
     this.future = [];
-    this.thereIsAPresent = this.thereIsAPresent.bind(this);
-    this.thereIsAPast = this.thereIsAPast.bind(this);
-    this.thereIsAFuture = this.thereIsAFuture.bind(this);
-    this.setPresentState = this.setPresentState.bind(this);
-    this.movePresentToPast = this.movePresentToPast.bind(this);
-    this.movePresentToFuture = this.movePresentToFuture.bind(this);
-    this.movePastToPresent = this.movePastToPresent.bind(this);
-    this.moveFutureToPresent = this.moveFutureToPresent.bind(this);
-    this.push = this.push.bind(this);
-    this.undo = this.undo.bind(this);
-    this.redo = this.redo.bind(this);
-    this.gotoState = this.gotoState.bind(this);
   }
   thereIsAPresent() {
     return this.present !== undefined;
@@ -42,9 +31,12 @@ class History {
     this.setPresentState(this.future.pop());
   }
   push(currentState) {
+    // 当前有状态，那么存到过去
+    // if ( --this.actionNumbersBeforeUserAccess >= 0) return;
     if (this.thereIsAPresent()) {
       this.movePresentToPast();
     }
+    // 设置新的状态
     this.setPresentState(currentState);
   }
   undo() {
@@ -70,4 +62,4 @@ class History {
     this.future = allStates.slice(index + 1);
   }
 }
-export default new History(5);
+export default new History(3);

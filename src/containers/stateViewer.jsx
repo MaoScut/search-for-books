@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import StateViewer from '../components/stateViewer';
-import stateHistory from '../stateHistory';
+import stateHistory from '../userOptionHistory';
 
 const mapStateToProps = state => ({
   books: state.books,

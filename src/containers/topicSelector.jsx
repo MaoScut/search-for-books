@@ -11,6 +11,6 @@ export default connect(
     fetchTopic: (topic) => {
       dispatch(setTopic(topic));
       dispatch(fetchBooks());
-    }
+    },
   }),
 )(TopicSelector);
