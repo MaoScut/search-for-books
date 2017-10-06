@@ -20,7 +20,7 @@ module.exports = {
       loaders: ['babel-loader'],
     }, {
       test: /\.css/,
-      loader: ['css-loader'],
+      loaders: ['style-loader', 'css-loader'],
     }],
   },
   resolve: {
