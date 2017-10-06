@@ -8,5 +8,6 @@ export const thunk = store => next => (action) => {
 
 export const logger = store => next => (action) => {
   console.log('MIDDLEWARE: Executing action ' + action.type);
+  console.log('App state:', store.getState());
   return next(action);
 };
