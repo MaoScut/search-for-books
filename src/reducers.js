@@ -3,7 +3,7 @@ import stateHistory from './userOptionHistory';
 import * as types from './constant';
 
 const defaults = {
-  TOPIC: 'javascript',
+  TOPIC: '',
   DISPLAY_MODE: 'THUMBNAIL',
   BOOKS: [],
   STATUS: 'start the app!',
@@ -62,7 +62,7 @@ const undo = reducer => (state = stateHistory.present, action) => {
   return stateHistory.present;
 };
 const historyWrapper = reducer => (state, action) => {
-  const unNecessaryToBeSavedActions = [types.FETCH_STARTED];
+  const unNecessaryToBeSavedActions = [types.FETCH_STARTED, types.SET_TOPIC];
   if (unNecessaryToBeSavedActions.includes(action.type)) {
     return reducer(state, action);
   }

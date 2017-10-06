@@ -62,4 +62,4 @@ class History {
     this.future = allStates.slice(index + 1);
   }
 }
-export default new History(3);
+export default new History(0);

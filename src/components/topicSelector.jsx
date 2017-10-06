@@ -61,6 +61,7 @@ export default class TopicSelector extends React.Component {
           type="text"
           ref={input => this.input = input}
           value={this.state.input}
+          placeholder="please input a book type"
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
         />

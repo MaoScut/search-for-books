@@ -40,7 +40,7 @@ const History = ({
         style={styles.input}
         onChange={e => gotoState(e.target.value)}
       />
-      {(past && past.length >= previousActionNum) ? <LeftArrow /> : null}
+      {(past && past.length > previousActionNum) ? <LeftArrow /> : null}
       {(future && future.length > 0) ? <RightArrow /> : null}
     </span>
   );

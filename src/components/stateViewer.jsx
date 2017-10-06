@@ -34,8 +34,8 @@ const StateViewer = ({
         Topic: {topic} <br />
         displayMode: {displayMode} <br />
         Books displayed: {books.length} <br />
-        Actions processed: {history.past.length + history.future.length + 1} <br />
-        Current action: {history.past.length + 1}
+        Actions processed: {history.past.length + history.future.length} <br />
+        Current action: {history.past.length}
       </div>
     </div>
   );
