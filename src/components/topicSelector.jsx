@@ -3,6 +3,9 @@ import React from 'react';
 export default class TopicSelector extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      input: props.topic || '',
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
@@ -17,12 +20,22 @@ export default class TopicSelector extends React.Component {
     input.focus();
     putCursorAtEnd(input);
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      input: nextProps.topic,
+    });
+  }
+
   handleChange(e) {
-    this.props.setTopic(e.target.value);
+    // this.props.setTopic(e.target.value);
+    this.setState({
+      input: e.target.value,
+    });
   }
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      this.props.fetchTopic(e.target.value);
+      // this.props.setTopic(this.state.input);
+      this.props.fetchTopic(this.state.input);
     }
   }
   render() {
@@ -47,7 +60,7 @@ export default class TopicSelector extends React.Component {
         <input
           type="text"
           ref={input => this.input = input}
-          value={topic}
+          value={this.state.input}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
         />

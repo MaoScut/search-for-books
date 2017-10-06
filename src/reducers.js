@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import stateHistory from './stateHistory';
+import stateHistory from './userOptionHistory';
 import * as types from './constant';
 
 const defaults = {
@@ -50,6 +50,10 @@ const undo = reducer => (state = stateHistory.present, action) => {
     case types.GOTO:
       stateHistory.gotoState(action.stateIndex);
       break;
+    case types.FETCH_STARTED: {
+      const newStateWithLoading = reducer(state, action);
+      return newStateWithLoading;
+    }
     default: {
       const newState = reducer(state, action);
       stateHistory.push(newState);
@@ -57,8 +61,29 @@ const undo = reducer => (state = stateHistory.present, action) => {
   }
   return stateHistory.present;
 };
-
-export default undo(combineReducers({
+const historyWrapper = reducer => (state, action) => {
+  const unNecessaryToBeSavedActions = [types.FETCH_STARTED];
+  if (unNecessaryToBeSavedActions.includes(action.type)) {
+    return reducer(state, action);
+  }
+  switch (action.type) {
+    case types.UNDO:
+      stateHistory.undo();
+      break;
+    case types.REDO:
+      stateHistory.redo();
+      break;
+    case types.GOTO:
+      stateHistory.gotoState(action.stateIndex);
+      break;
+    default: {
+      const newState = reducer(state, action);
+      stateHistory.push(newState);
+    }
+  }
+  return stateHistory.present;
+};
+export default historyWrapper(combineReducers({
   topic: topicReducer,
   displayMode: displayModeReducer,
   books: fetchReducer,

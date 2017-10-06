@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { undo, redo, gotoState } from '../actions';
 import History from '../components/history';
-import stateHistory from '../stateHistory';
+import stateHistory from '../userOptionHistory';
 
 const mapStateToProps = () => ({
   past: stateHistory.past,
   present: stateHistory.present,
   future: stateHistory.future,
+  previousActionNum: stateHistory.actionNumbersBeforeUserAccess,
 });
 const mapDispatchToProps = dispatch => ({
   undo: () => dispatch(undo()),
