@@ -15,6 +15,10 @@ const History = ({
     },
     input: {
       cursor: 'pointer',
+      verticalAlign: 'middle',
+    },
+    span: {
+      marginLeft: 20,
     },
   };
   const RightArrow = () => (
@@ -32,7 +36,7 @@ const History = ({
   //   (future ? future.length : 0)) - 1;
   const maxRange = statesLength - 1;
   return (
-    <span>
+    <span style={styles.span}>
       History
       <input
         type="range"
