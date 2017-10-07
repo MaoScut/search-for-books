@@ -7,10 +7,10 @@ const DisplayMode = ({
   setThumbnail,
   displayMode,
 }) => {
-  const switchToListing = function () {
+  const switchToListing = () => {
     setListing();
   };
-  const switchToThumbnail = function () {
+  const switchToThumbnail = () => {
     setThumbnail();
   };
   const styles = {

@@ -51,7 +51,6 @@ export default class TopicSelector extends React.Component {
         marginRight: 10,
       },
     };
-    const topic = this.props.topic;
     return (
       <span>
         <span style={styles.topic}>
@@ -59,7 +58,7 @@ export default class TopicSelector extends React.Component {
         </span>
         <input
           type="text"
-          ref={input => this.input = input}
+          ref={(input) => { this.input = input; }}
           value={this.state.input}
           placeholder="please input a book type"
           onChange={this.handleChange}

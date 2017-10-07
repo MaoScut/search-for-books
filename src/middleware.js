@@ -1,4 +1,4 @@
-export const thunk = store => next => (action) => { 
+export const thunk = store => next => (action) => {
   if (action.fn && typeof action.fn === 'function') {
     action.fn(store.dispatch, store.getState()); // invoke the action
   } else {
